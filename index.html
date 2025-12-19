@@ -3,212 +3,341 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Bahadır YILDIZ — Resume  (IP-y/n)</title>
+<title>Bahadır YILDIZ — Interactive Resume</title>
 <style>
-  html,body{height:100%;margin:0;background:#000;color:#39ff14;font-family:"Courier New",monospace;}
-  .wrap{max-width:900px;margin:1rem auto;padding:1rem;background:rgba(0,0,0,0.8);border-radius:6px;}
-  .screen{background:#000;padding:1rem;border-radius:5px;min-height:420px;overflow:auto;box-shadow:0 0 20px #0f0;}
-  .line{white-space:pre-wrap;line-height:1.5;opacity:0;transition:opacity .12s linear;}
-  .prompt{color:#39ff14;}
-  .input{background:transparent;border:none;outline:none;color:inherit;font-family:inherit;font-size:1rem;width:92%;}
-  .muted{color:#6f6f6f;}
-  .footer{margin-top:10px;color:#555;font-size:.85rem;}
-  a{color:#39ff14;}
-  .small { font-size:0.92rem; color:#8fb88f; }
-  @media (max-width:520px){ .wrap{margin:.6rem;padding:.7rem;} .input{font-size:.95rem;} }
-  #ascii{display:none;white-space:pre;font-family:monospace;line-height:1.1;margin-top:1rem;}
+  html, body {
+    height: 100%;
+    margin: 0;
+    background: #000;
+    color: #00ff66;
+    font-family: "Courier New", monospace;
+    font-size: 1rem;
+  }
+  .wrap {
+    max-width: 900px;
+    margin: 1.5rem auto;
+    padding: 1rem;
+  }
+  .screen {
+    background: #000;
+    border: 2px solid #00ff66;
+    border-radius: 6px;
+    box-shadow: 0 0 25px #00ff66;
+    padding: 1rem;
+    min-height: 440px;
+    overflow: auto;
+  }
+  .line {
+    display: flex;
+    align-items: center;
+    white-space: pre-wrap;
+    line-height: 1.2;
+    margin: 3px 0;
+  }
+  .prompt {
+    color: #00ff66;
+    margin-right: 6px;
+  }
+  .input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: inherit;
+    font-family: inherit;
+    font-size: 1rem;
+    line-height: 1;
+    flex: 1;
+    caret-color: transparent;
+    position: relative;
+  }
+  .cursor::after {
+    content: "█";
+    animation: blink 1s steps(1) infinite;
+    margin-left: 2px;
+  }
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    50.1%, 100% { opacity: 0; }
+  }
+  .muted { color: #048b41; }
+  .footer { margin-top: 12px; color: #444; font-size: .85rem; text-align: center; }
+  a { color: #00ff66; }
+  @media (max-width: 520px) {
+    .wrap { margin: .5rem; padding: .5rem; }
+  }
 </style>
 </head>
 <body>
 
 <div class="wrap">
   <div class="screen" id="screen" tabindex="0" aria-label="Interactive terminal resume">
-    <div class="line" style="opacity:1;">Welcome to Bahadır YILDIZ’ Resume (Deluxe)</div>
-    <div class="line" style="opacity:1;"><span class="muted">Type </span><span class="prompt">help</span><span class="muted"> and press Enter.</span></div>
+    <div class="line" style="opacity:1;"><span class="muted">Initializing...</span></div>
     <div id="log"></div>
-    <div class="line" style="opacity:1;"><span class="prompt">guest@resume:~$</span> <input id="cmd" class="input" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="terminal input">
-</div>
-    <pre id="ascii">
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⠁⠀⠀⠈⠉⠙⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢻⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⡟⠀⠀⠀⠀⠀⢀⣠⣤⣤⣤⣤⣄⠀⠀⠀⠹⣿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⠁⠀⠀⠀⠀⠾⣿⣿⣿⣿⠿⠛⠉⠀⠀⠀⠀⠘⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⡏⠀⠀⠀⣤⣶⣤⣉⣿⣿⡯⣀⣴⣿⡗⠀⠀⠀⠀⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⡈⠀⠀⠉⣿⣿⣶⡉⠀⠀⣀⡀⠀⠀⠀⢻⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⡇⠀⠀⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⠀⢸⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠉⢉⣽⣿⠿⣿⡿⢻⣯⡍⢁⠄⠀⠀⠀⣸⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⣿⡄⠀⠀⠐⡀⢉⠉⠀⠠⠀⢉⣉⠀⡜⠀⠀⠀⠀⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⣿⠿⠁⠀⠀⠀⠘⣤⣭⣟⠛⠛⣉⣁⡜⠀⠀⠀⠀⠀⠛⠿⣿⣿⣿
-⡿⠟⠛⠉⠉⠀⠀⠀⠀⠀⠀⠀⠈⢻⣿⡀⠀⣿⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉
-    </pre>
+    <div class="line">
+      <span class="prompt">guest@resume:~$</span>
+      <input id="cmd" class="input" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="terminal input">
+      <span class="cursor" id="cursor"></span>
+    </div>
   </div>
-  <div class="footer"> Easter Egg: There's a little surprise hidden in the source code 😉. Type 'ip' to discover it!.</div>
+  <div class="footer">Type <b>help</b> to get started • Easter Egg hidden in source 😉</div>
 </div>
-
 
 <script>
 const screen = document.getElementById('screen');
 const logEl = document.getElementById('log');
 const cmdInput = document.getElementById('cmd');
-const asciiEl = document.getElementById('ascii');
+const cursor = document.getElementById('cursor');
 
-function addLine(text, cls){
+const USER_NAME = "Bahadır YILDIZ";
+const USER_TITLE = "Biomedical Engineer / Junior Security Analyst";
+const USER_LOCATION = "Türkiye";
+const LINKEDIN = "https://www.linkedin.com/in/bahad%C4%B1r-y%C4%B1ld%C4%B1z-8b8349174";
+const SECRET_PW = "Cyberbiomedeng";
+
+const EXPERIENCE = [
+  "Tıbbi Simülasyon Eğitim Hizmetleri, Istanbul, Turkey — Aug 2023 – Present",
+  "Biomedical Engineer",
+  "• Assisted physicians in simulation-based trainings (Abdi İbrahim).",
+  "• Managed cardio/neuro simulation events across Türkiye.",
+  "",
+  "BHM Biomedikal Hizmetler Merkezi, Istanbul, Turkey — Jul 2022 – Jun 2023",
+  "Field Service Engineer",
+  "• Performed maintenance, repair, and calibration of infusion/syringe/pain pumps.",
+  "• Delivered technical trainings and documentation.",
+  "",
+  "Ministry of National Defense, Turkish Armed Forces Medical Supply — Jul 2021 – Jun 2022",
+  "Biomedical Engineer",
+  "• Prepared procurement technical specs for medical devices.",
+  "• Calibrated and maintained ventilators, defibrillators, monitors, and autoclaves."
+];
+
+const PROJECTS = [
+  {title: "BiomedX YouTube Channel", url: "https://www.youtube.com/@BioEngX"}
+];
+
+let awaitingConfirmation = null;
+
+function addLine(text, cls="") {
   const div = document.createElement('div');
-  div.className = 'line'+(cls? ' '+cls:'');
+  div.className = 'line ' + cls;
   div.textContent = text;
-  div.style.opacity = 1;
   logEl.appendChild(div);
   screen.scrollTop = screen.scrollHeight;
 }
 
-function sleep(ms){ return new Promise(r=>setTimeout(r, ms)); }
-
-async function typeLine(text,speed=8){
-  let idx=0;
-  const div=document.createElement('div');
-  div.className='line';
-  logEl.appendChild(div);
-  async function step(){
-    div.textContent=text.slice(0,idx);
-    div.style.opacity=1;
-    screen.scrollTop=screen.scrollHeight;
-    if(idx<text.length){ idx++; setTimeout(step,speed); }
-  }
-  step();
-  await sleep(text.length*speed);
-}
-
-function generateSimulatedIP(){
-  const last = Math.floor(Math.random()*250)+1;
-  return `203.0.113.${last}`;
-}
-
-async function simulatedScan(label="Scanning",durationMs=1200){
-  const steps=8;
-  const per=Math.max(20,Math.floor(durationMs/steps));
-  for(let i=1;i<=steps;i++){
-    const bar="█".repeat(Math.floor((i/steps)*10))+"░".repeat(10-Math.floor((i/steps)*10));
-    await typeLine(`${label} ${bar} ${Math.floor((i/steps)*100)}%`,12);
-  }
-}
-
-let awaitingConfirmation=null;
-
-async function processConfirmationResponse(char){
-  const resp=(char||"").trim().toLowerCase();
-  if(!awaitingConfirmation) return false;
-  if(awaitingConfirmation.type==='ip'){
-    if(resp==='y'||resp==='yes'){
-      awaitingConfirmation=null;
-      await typeLine("User consent received. Connecting to ipify...");
-      await simulatedScan("Connecting");
-      await typeLine("Query in progress (ipify.org) — please wait...");
-      try{
-        const res=await fetch('https://api.ipify.org?format=json',{cache:"no-store"});
-        if(!res.ok)throw new Error("non-200");
-        const data=await res.json();
-        const realIp=data.ip;
-        await typeLine(`Public IP detected: ${realIp}`);
-      }catch(err){
-        await typeLine("The ipify query failed or access was blocked. A simulated IP is being displayed.");
-        const fake=generateSimulatedIP();
-        await typeLine(`Public IP detected (simulated): ${fake}`);
-      }
-      await typeLine("Trace complete ✔️ (simulated)");
-      asciiEl.style.display='block';
-      return true;
-    } else if(resp==='n'||resp==='no'){
-      awaitingConfirmation=null;
-      await typeLine("IP detection skipped. Showing simulated IP...");
-      await simulatedScan("Scanning");
-      const fake=generateSimulatedIP();
-      await typeLine(`Public IP detected (simulated): ${fake}`);
-      await typeLine("Trace complete ✔️ (simulated)");
-      asciiEl.style.display='block';
-      return true;
-    } else{
-      await typeLine("Please type 'y' (yes) or 'n' (no) and press Enter.");
-      return true;
+function typeLine(text, speed=10) {
+  return new Promise(res => {
+    const div = document.createElement('div');
+    div.className = 'line';
+    logEl.appendChild(div);
+    let i = 0;
+    function step() {
+      div.textContent = text.slice(0, i++);
+      screen.scrollTop = screen.scrollHeight;
+      if (i <= text.length) setTimeout(step, speed);
+      else res();
     }
-  }
-  awaitingConfirmation=null;
-  return false;
+    step();
+  });
 }
 
-async function runCmd(raw){
-  const input=raw.trim();
-  const parts=input.split(/\s+/);
-  const cmd=(parts[0]||"").toLowerCase();
-  if(awaitingConfirmation){
-    const handled=await processConfirmationResponse(input);
-    if(handled) return;
+/* Mini-game overlay */
+function openMiniGame() {
+  const overlay = document.createElement('div');
+  overlay.id = 'miniGameOverlay';
+  Object.assign(overlay.style, {
+    position: 'fixed', inset: '0', background: 'rgba(0,0,0,0.9)',
+    display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', zIndex: 9999
+  });
+
+  const box = document.createElement('div');
+  Object.assign(box.style, {
+    position:'relative', width:'min(640px,90vw)', height:'min(480px,70vh)',
+    background:'#000', border:'4px solid #00ff66', borderRadius:'8px',
+    padding:'10px', display:'flex', flexDirection:'column', alignItems:'center'
+  });
+
+  const hdr = document.createElement('div');
+  hdr.textContent = "Secret Mini-Game — Snake (Use arrow keys)";
+  hdr.style.color = '#00ff66'; hdr.style.marginBottom = '8px';
+
+  const canvas = document.createElement('canvas');
+  canvas.width = 600; canvas.height = 420;
+  Object.assign(canvas.style, {background:'#010101', border:'2px solid #003300'});
+
+  const footer = document.createElement('div');
+  footer.style.marginTop = '8px'; footer.style.display='flex'; footer.style.gap='10px'; footer.style.alignItems='center';
+  const scoreLabel = document.createElement('div'); scoreLabel.style.color='#9affb1'; scoreLabel.textContent = 'Score: 0';
+  const closeBtn = document.createElement('button'); closeBtn.textContent = 'Close'; 
+  Object.assign(closeBtn.style, {background:'#00ff66', border:'none', padding:'6px 10px', borderRadius:'4px', cursor:'pointer'});
+  footer.appendChild(scoreLabel); footer.appendChild(closeBtn);
+
+  box.appendChild(hdr); box.appendChild(canvas); box.appendChild(footer); overlay.appendChild(box); document.body.appendChild(overlay);
+
+  const ctx = canvas.getContext('2d');
+  const scale = 20;
+  const cols = Math.floor(canvas.width / scale);
+  const rows = Math.floor(canvas.height / scale);
+  let snake = [{x: Math.floor(cols/2), y: Math.floor(rows/2)}];
+  let dir = {x:1,y:0};
+  let food = spawnFood();
+  let score = 0;
+  let running = true;
+  scoreLabel.textContent = 'Score: ' + score;
+
+  function spawnFood() {
+    return { x: Math.floor(Math.random()*cols), y: Math.floor(Math.random()*rows) };
   }
-  addLine(`guest@resume:~$ ${raw}`,'prompt');
-  if(!cmd) return;
-  switch(cmd){
+
+  function draw() {
+    ctx.fillStyle = '#000'; ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle = '#ff2d6f'; ctx.fillRect(food.x*scale, food.y*scale, scale, scale);
+    ctx.fillStyle = '#00ff66';
+    for(let s of snake) ctx.fillRect(s.x*scale, s.y*scale, scale-1, scale-1);
+  }
+
+  function step(){
+    if(!running) return;
+    const head = {x:(snake[0].x+dir.x+cols)%cols, y:(snake[0].y+dir.y+rows)%rows};
+    for(let s of snake) if(s.x===head.x && s.y===head.y){ gameOver(); return; }
+    snake.unshift(head);
+    if(head.x===food.x && head.y===food.y){
+      score++; scoreLabel.textContent='Score: '+score; food=spawnFood();
+    } else snake.pop();
+    draw();
+  }
+
+  function gameOver(){
+    running = false;
+    const msg = document.createElement('div');
+    msg.textContent = `Game Over — Score: ${score}`;
+    msg.style.color = '#ff8a8a'; msg.style.marginTop = '10px';
+    box.appendChild(msg);
+
+    const reward = document.createElement('div');
+    reward.style.color = '#9fffbf'; reward.style.marginTop = '8px';
+    reward.innerHTML = `Nice! Want a surprise? <a id="secretLink" href="#" style="color:#00ff66">Open Secret Resource</a>`;
+    box.appendChild(reward);
+    document.getElementById('secretLink').addEventListener('click', e=>{
+      e.preventDefault();
+      window.open('https://www.youtube.com/@BioEngX', '_blank');
+    });
+  }
+
+  function keyHandler(e){
+    const k=e.key;
+    if(k==='ArrowUp'&&dir.y!==1)dir={x:0,y:-1};
+    if(k==='ArrowDown'&&dir.y!==-1)dir={x:0,y:1};
+    if(k==='ArrowLeft'&&dir.x!==1)dir={x:-1,y:0};
+    if(k==='ArrowRight'&&dir.x!==-1)dir={x:1,y:0};
+    if(k==='Escape')close();
+  }
+  document.addEventListener('keydown',keyHandler);
+  const interval=setInterval(step,120);
+
+  function close(){
+    running=false;clearInterval(interval);
+    document.removeEventListener('keydown',keyHandler);
+    overlay.remove();
+    addLine("guest@resume:~$ unlock mini-game closed","prompt");
+    addLine("Nice play! Back to the resume terminal.");
+  }
+
+  closeBtn.addEventListener('click',close);
+  cmdInput.focus();
+}
+
+/* Main command handler */
+async function runCmd(cmd) {
+  const input = cmd.trim();
+  if (!input) return;
+  addLine("guest@resume:~$ " + input, "prompt");
+
+  if (awaitingConfirmation) {
+    const ans = input.toLowerCase();
+    if (awaitingConfirmation === 'ip') {
+      if (ans === 'y' || ans === 'yes') {
+        awaitingConfirmation = null;
+        await typeLine("Connecting to ipify.org...");
+        try {
+          const res = await fetch('https://api.ipify.org?format=json');
+          const data = await res.json();
+          await typeLine("Your Public IP: " + data.ip);
+          await typeLine("Selam! Bu sistemi keşfettiğin için teşekkürler — Bahadır YILDIZ.");
+        } catch {
+          await typeLine("Connection failed. Simulated IP: 203.0.113." + Math.floor(Math.random() * 255));
+        }
+      } else {
+        awaitingConfirmation = null;
+        await typeLine("Cancelled. Simulated IP: 203.0.113." + Math.floor(Math.random() * 255));
+      }
+    }
+    return;
+  }
+
+  const parts = input.split(" ");
+  switch (parts[0].toLowerCase()) {
     case 'help':
-      await typeLine(`help        — list commands
-whoami       — show identity
-experience   — show experience
-projects     — show projects
-ip           — detect public IP 
-linkedin     — open LinkedIn
-clear        — clear screen`,8);
+      await typeLine("Commands:");
+      await typeLine("whoami     — Show profile info");
+      await typeLine("experience — Show experience");
+      await typeLine("projects   — Show projects");
+      await typeLine("ip         — Detect public IP (asks for consent)");
+      await typeLine("unlock <pw>— Hidden mini-game Easter Egg");
+      await typeLine("clear      — Clear screen");
       break;
+
     case 'whoami':
-      await typeLine("Bahadır YILDIZ — Biomedical Engineer/Junior Security Analyst\nTurkey");
+      await typeLine(`${USER_NAME} — ${USER_TITLE}`);
+      await typeLine(USER_LOCATION);
       break;
+
     case 'experience':
-      await typeLine(`Experience:
-- Tıbbi Simülasyon Eğitim Hizmetleri, Istanbul, Turkey — August 2023 – Present
-- Biomedical Engineer
-- Supported and assisted physicians and healthcare professionals in simulation-based trainings.
-- Coordinated events in cardiology, cardiovascular surgery, and neurology across Turkey with Abdi İbrahim.
-- BHM Biomedikal Hizmetler Merkezi, Istanbul, Turkey — July 2022 – June 2023
-- Field Service Engineer
-- Performed maintenance, repair, calibration, and documentation for infusion/syringe/pain pumps.
-- Delivered user trainings and product demonstrations for consumables.
-- Ministry of National Defense, Turkish Armed Forces Medical Supply — July 2021 – June 2022
-- Biomedical Engineer
-- Prepared technical specifications for medical device procurement and tenders.
-- Performed calibration/maintenance for ventilators, defibrillators, monitors, autoclaves, etc.`,8);
+      for (let line of EXPERIENCE) await typeLine(line);
       break;
+
     case 'projects':
-      await typeLine("Projects:\n* BiomedX YouTube Channel (https://www.youtube.com/@BioEngX)",8);
+      for (let p of PROJECTS) await typeLine(`• ${p.title}: ${p.url}`);
       break;
-    case 'linkedin':
-      await typeLine("Opening LinkedIn...");
-      window.open("https://www.linkedin.com/in/bahad%C4%B1r-y%C4%B1ld%C4%B1z-8b8349174","_blank");
-      break;
+
     case 'clear':
-      logEl.innerHTML="";
+      logEl.innerHTML = "";
       break;
+
     case 'ip':
-      awaitingConfirmation={type:'ip'};
-      await typeLine("Warning: This process will send a request to ipify.org to obtain your public IP address.");
-      await typeLine("Do you want to continue? (y/n) and press Enter.");
+      awaitingConfirmation = 'ip';
+      await typeLine("Bu işlem ipify.org üzerinden IP adresinizi alacaktır.");
+      await typeLine("Devam etmek istiyor musunuz? (y/n)");
       break;
+
+    case 'unlock':
+      const pw = parts.slice(1).join(" ");
+      if (pw === SECRET_PW) {
+        await typeLine("✅ Access granted! Launching secret mini-game...");
+        openMiniGame();
+      } else {
+        await typeLine("❌ Wrong password. Try again.");
+      }
+      break;
+
     default:
-      await typeLine(`Command not found: ${cmd} — try 'help'.`);
+      await typeLine(`Command not found: ${input}`);
   }
 }
 
-cmdInput.addEventListener('keydown', async (e)=>{
-  if(e.key==='Enter'){
+cmdInput.addEventListener('keydown', async e => {
+  if (e.key === 'Enter') {
     e.preventDefault();
-    const v=cmdInput.value;
-    cmdInput.value='';
+    const v = cmdInput.value;
+    cmdInput.value = '';
     await runCmd(v);
   }
 });
 
-screen.addEventListener('click',()=> cmdInput.focus());
-
-(async ()=>{
-  await typeLine("Initializing terminal…");
-  await typeLine("Note: The 'ip' command gets the real IP with ipify — confirmation is requested via the terminal first (y/n).");
-  await typeLine("Type 'help' to begin.");
+screen.addEventListener('click', () => cmdInput.focus());
+(async () => {
+  await typeLine("Initializing terminal...");
+  await typeLine("Note: type 'help' for available commands.");
 })();
 </script>
 
