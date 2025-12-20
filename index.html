@@ -304,7 +304,10 @@ async function runCmd(cmd) {
     case 'whoami':
       await typeLine(`${USER_NAME} — ${USER_TITLE}`);
       await typeLine(USER_LOCATION);
-      await typeLine(LINKEDIN);
+  const liDiv = document.createElement('div');
+  liDiv.className = 'line';
+  liDiv.innerHTML = `🔗 LinkedIn: <a href="https://www.linkedin.com/in/bahadır-yıldız-8b8349174" target="_blank" style="color:#00ff66">Visit my profile</a>`;
+  logEl.appendChild(liDiv);
       break;
     case 'experience':
       for (let line of EXPERIENCE) await typeLine(line);
@@ -353,4 +356,5 @@ screen.addEventListener('click', () => cmdInput.focus());
 
 </body>
 </html>
+
 
